@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+      }
+
+      .fordiv {
+        background-color: white;
+        padding: 35px;
+        padding-right: 55px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .e1,
+      .e2 {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fordiv">
+      <form action="/login/" method="post">
+        {% csrf_token %}
+        <div class="e1">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" />
+        </div>
+        <div class="e2">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="text" />
+        </div>
+        <div class="e2">
+          <input type="submit" value="Submit" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
