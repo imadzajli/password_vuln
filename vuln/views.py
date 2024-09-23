@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from .models import *
 from django.db import connection
@@ -33,7 +33,27 @@ def login(request):
     return render(request,"login.html")
 
 
+def comment_view(request):
+    if request.method == 'POST':
+        author = request.POST.get('author')
+        content = request.POST.get('content')
+        if author and content:
+            Comment.objects.create(author=author, content=content)
+            return redirect('comment_view')  # Redirect to avoid form resubmission
+    comments = Comment.objects.all()
+    return render(request, 'comments.html', {'comments': comments})
 
+def delete(request):
+    Comment.objects.all().delete()
+    return redirect('comment_view')
+
+
+from django.http import HttpResponse
+
+def set_test_cookie(request):
+    response = HttpResponse("Setting a test cookie.")
+    response.set_cookie('test_cookie', 'secured_cookie_you_never_now_this', max_age=3600)  # Cookie expires after 1 hour
+    return response
 
 '''
 def get_user(username,password):
